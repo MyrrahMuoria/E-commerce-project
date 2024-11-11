@@ -44,3 +44,43 @@ document.querySelectorAll('.add-to-cart-btn').forEach((button) => {
     addToCart(productName, productPrice);
   });
 });
+
+// Chatbot Functionality
+document.getElementById('send-message').addEventListener('click', handleUserMessage);
+
+function handleUserMessage() {
+  const userInput = document.getElementById('chatbot-input').value.trim();
+  if (!userInput) return;
+
+  displayMessage(`User: ${userInput}`, 'user-message');
+
+  let botResponse = generateBotResponse(userInput);
+  displayMessage(`Bot: ${botResponse}`, 'bot-message');
+
+  document.getElementById('chatbot-input').value = ''; // Clear input after sending
+}
+
+function generateBotResponse(message) {
+  message = message.toLowerCase();
+  
+  if (message.includes('hello') || message.includes('hi')) {
+    return 'Hello! Welcome to our clothing store. How can I help you today?';
+  } else if (message.includes('men') || message.includes('women') || message.includes('kids') || message.includes('accessories')) {
+    return `Sure, let me show you our ${message} section!`;
+  } else if (message.includes('contact')) {
+    return 'You can find our contact information on the Contact page.';
+  } else if (message.includes('price') || message.includes('cost')) {
+    return 'Please check the product pages for detailed pricing information.';
+  } else {
+    return 'I am here to help with store information, product sections, and basic assistance!';
+  }
+}
+
+function displayMessage(text, className) {
+  const messageContainer = document.getElementById('chatbot-messages');
+  const messageElement = document.createElement('div');
+  messageElement.className = className;
+  messageElement.textContent = text;
+  messageContainer.appendChild(messageElement);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+}
