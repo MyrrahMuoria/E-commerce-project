@@ -1,0 +1,79 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling for Body and Header */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+/* Navigation and Cart Icon */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+}
+
+#cart-icon {
+    cursor: pointer;
+}
+
+/* Product Grid Styling */
+#product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+    padding: 1em;
+}
+
+.product-card {
+    background-color: #fff;
+    padding: 1em;
+    border: 1px solid #ddd;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+/* Cart Sidebar */
+#cart-display {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    background-color: #fff;
+    border-left: 1px solid #ddd;
+    padding: 1em;
+    display: none;
+}
+
+#cart-display.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    #product-grid {
+        grid-template-columns: 1fr;
+    }
+}

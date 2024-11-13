@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <header>
+        <h1>Store Name</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-category="all">All</a></li>
+                <li><a href="#" data-category="category1">Category 1</a></li>
+                <li><a href="#" data-category="category2">Category 2</a></li>
+            </ul>
+            <input type="text" id="search" placeholder="Search products...">
+            <div id="cart-icon">
+                <span>Cart (0)</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Product Filters -->
+    <section id="filters">
+        <form>
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+            </select>
+        </form>
+    </section>
+
+    <!-- Product Display Area -->
+    <main id="product-grid">
+        <div class="product-card" data-category="category1">
+            <img src="product1.jpg" alt="Product 1">
+            <h2>Product 1</h2>
+            <p>Description of Product 1</p>
+            <p class="price">$10.00</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Repeat for other products -->
+    </main>
+
+    <!-- Cart Display -->
+    <aside id="cart-display">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p>Total: $<span id="total-price">0.00</span></p>
+        <button id="checkout-btn">Checkout</button>
+    </aside>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
