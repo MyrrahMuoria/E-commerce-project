@@ -1,25 +1,48 @@
-// JavaScript: Shopping Cart, Filtering, and Search
-
-// Product data (replace with dynamic loading if available)
 const products = [
-    { id: 1, name: "Product 1", price: 10.0, category: "category1" },
-    { id: 2, name: "Product 2", price: 20.0, category: "category2" },
-    // Add more products here
+    { id: 1, name: "Stylish Shirt", price: 25.0, category: "men", image: "images/shirt1.jpeg" },
+    { id: 2, name: "Casual Shorts", price: 15.0, category: "women", image: "images/short1.jpeg" },
+    { id: 3, name: "Denim Shorts", price: 20.0, category: "women", image: "images/short2.jpeg" },
+    // Add more products as needed
 ];
 
+// Initialize cart
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 updateCartDisplay();
 
-// Event listener for adding products to cart
-document.querySelectorAll(".add-to-cart").forEach((button, index) => {
-    button.addEventListener("click", () => addToCart(products[index]));
-});
+// Dynamically generate product cards (call this function on page load)
+function generateProductCards(category = "all") {
+    const productContainer = document.getElementById("product-list");
+    if (!productContainer) return;
+
+    productContainer.innerHTML = ""; // Clear existing cards
+    products.forEach((product) => {
+        if (category === "all" || product.category === category) {
+            productContainer.innerHTML += `
+                <div class="product-card" data-category="${product.category}">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h4>${product.name}</h4>
+                    <p>$${product.price.toFixed(2)}</p>
+                    <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                </div>
+            `;
+        }
+    });
+
+    // Reattach event listeners for "Add to Cart" buttons
+    document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const productId = parseInt(event.target.dataset.id, 10);
+            const product = products.find((p) => p.id === productId);
+            addToCart(product);
+        });
+    });
+}
 
 // Add product to cart
 function addToCart(product) {
-    const item = cart.find((item) => item.id === product.id);
-    if (item) {
-        item.quantity++;
+    const existingItem = cart.find((item) => item.id === product.id);
+    if (existingItem) {
+        existingItem.quantity++;
     } else {
         cart.push({ ...product, quantity: 1 });
     }
@@ -30,6 +53,11 @@ function addToCart(product) {
 // Update cart display
 function updateCartDisplay() {
     const cartDisplay = document.getElementById("cart-items");
+    const totalPriceElement = document.getElementById("total-price");
+    const cartIcon = document.getElementById("cart-icon");
+
+    if (!cartDisplay || !totalPriceElement || !cartIcon) return;
+
     cartDisplay.innerHTML = "";
     let total = 0;
     cart.forEach((item) => {
@@ -41,8 +69,9 @@ function updateCartDisplay() {
             </div>
         `;
     });
-    document.getElementById("total-price").innerText = total.toFixed(2);
-    document.getElementById("cart-icon").innerText = `Cart (${cart.length})`;
+
+    totalPriceElement.innerText = `Total: $${total.toFixed(2)}`;
+    cartIcon.innerText = `Cart (${cart.length})`;
 }
 
 // Remove item from cart
@@ -52,22 +81,29 @@ function removeFromCart(id) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Category filtering
+// Filter products by category
 document.querySelectorAll("nav ul li a").forEach((link) => {
     link.addEventListener("click", (event) => {
         event.preventDefault();
-        const category = event.target.dataset.category;
-        document.querySelectorAll(".product-card").forEach((card) => {
-            card.style.display = category === "all" || card.dataset.category === category ? "block" : "none";
-        });
+        const category = event.target.dataset.category || "all";
+        generateProductCards(category);
     });
 });
 
-// Product search functionality
-document.getElementById("search").addEventListener("input", (event) => {
-    const searchTerm = event.target.value.toLowerCase();
-    document.querySelectorAll(".product-card").forEach((card) => {
-        const productName = card.querySelector("h2").innerText.toLowerCase();
-        card.style.display = productName.includes(searchTerm) ? "block" : "none";
+// Search products
+const searchInput = document.getElementById("search");
+if (searchInput) {
+    searchInput.addEventListener("input", (event) => {
+        const searchTerm = event.target.value.toLowerCase();
+        document.querySelectorAll(".product-card").forEach((card) => {
+            const productName = card.querySelector("h4").innerText.toLowerCase();
+            card.style.display = productName.includes(searchTerm) ? "block" : "none";
+        });
     });
+}
+
+// Initialize on page load
+window.addEventListener("DOMContentLoaded", () => {
+    generateProductCards(); // Load all products by default
+    updateCartDisplay(); // Sync cart with localStorage
 });
