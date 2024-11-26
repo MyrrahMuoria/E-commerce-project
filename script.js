@@ -70,3 +70,62 @@ window.addEventListener("DOMContentLoaded", () => {
     if (productContainer) generateProductCards(); // Only generate products if #product-list exists
     updateCartDisplay(); // Sync cart with localStorage
 });
+
+
+
+// Chatbot Response Functionality
+document.addEventListener("DOMContentLoaded", () => {
+    const chatbot = document.querySelector(".chatbot");
+    const chatbotHeader = document.querySelector(".chatbot-header");
+    const chatbotMessages = document.querySelector(".chatbot-messages");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const sendMessageButton = document.getElementById("send-message");
+
+    // Toggle chatbot visibility
+    chatbotHeader.addEventListener("click", () => {
+        chatbot.classList.toggle("active");
+    });
+
+    // Send chatbot message
+    sendMessageButton.addEventListener("click", () => {
+        const userMessage = chatbotInput.value.trim();
+        if (!userMessage) return; // Exit if input is empty
+
+        // Display user's message
+        appendChatMessage("user", userMessage);
+
+        // Generate chatbot's response
+        setTimeout(() => {
+            const botResponse = generateChatbotResponse(userMessage);
+            appendChatMessage("bot", botResponse);
+        }, 500);
+
+        chatbotInput.value = ""; // Clear input
+    });
+
+    // Append a message to the chatbot interface
+    function appendChatMessage(sender, message) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add(`${sender}-message`);
+        messageElement.textContent = message;
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Auto-scroll
+    }
+
+    // Generate a basic chatbot response
+    function generateChatbotResponse(userMessage) {
+        const lowerCaseMessage = userMessage.toLowerCase();
+        if (lowerCaseMessage.includes("hello")) {
+            return "Hi there! How can I help you today?";
+        } else if (lowerCaseMessage.includes("product")) {
+            return "Are you looking for details about a specific product?";
+        } else if (lowerCaseMessage.includes("cart")) {
+            return "You can view your cart using the cart icon in the header.";
+        } else if (lowerCaseMessage.includes("checkout")) {
+            return "Proceed to the checkout section to complete your purchase.";
+        } else {
+            return "I'm here to help! Can you please clarify your query?";
+        }
+    }
+});
+
