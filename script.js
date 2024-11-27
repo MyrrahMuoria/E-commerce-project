@@ -39,10 +39,10 @@ function updateCartQuantity() {
 
 /** Redirect to the cart page when the "Cart" button is clicked */
 function goToCartPage() {
-    window.location.href = 'cart.html'; // Ensure this path matches your file structure
+    window.location.href = 'webstructure.html'; // Ensure this path matches your file structure
 }
 
-/** Update the cart page with item details on cart.html */
+/** Update the cart page with item details on webstructure.html */
 function updateCartPage() {
     const cartPageItems = document.getElementById('cart-page-items');
     const cartPageTotal = document.getElementById('cart-page-total');
@@ -108,6 +108,25 @@ function showProductDetails(name, price, image) {
     // Show the modal
     modal.style.display = "block";
 }
+// Function to inject the modal into the DOM
+function injectModal() {
+    if (!document.getElementById("product-modal")) {
+        const modal = document.createElement("div");
+        modal.id = "product-modal";
+        modal.className = "modal";
+        modal.style.display = "none"; // Initially hidden
+
+        modal.innerHTML = `
+            <div id="modal-content" class="modal-content">
+                <!-- Modal content will be dynamically populated here -->
+            </div>
+        `;
+        document.body.appendChild(modal); // Append modal to the end of the document
+    }
+}
+
+// Call this once to ensure the modal is added to the page
+injectModal();
 
 /** Close the modal */
 function closeModal() {
