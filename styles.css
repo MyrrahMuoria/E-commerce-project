@@ -1,0 +1,277 @@
+/* Basic Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align:baseline;
+    
+}
+
+/* Styling for Body and Header */
+body {
+    line-height: 1;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+ol, ul{
+    list-style: none;
+}
+header {
+    background-color: #4CAF50;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+header nav ul {
+    display: flex;
+    gap: 1em;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5em;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a:hover, 
+header nav ul li a.active {
+    background-color: #45a049;
+    border-radius: 4px;
+}
+
+#cart-icon {
+    cursor: pointer;
+}
+
+/* Product Grid Styling */
+#product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+    padding: 1em;
+}
+#product-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+.product-card {
+    background-color: #fff;
+    padding: 1em;
+    border: 1px solid #ddd;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Cart Sidebar */
+#cart-display {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height:100%;
+    background-color: #fff;
+    border-left: 1px solid #ddd;
+    padding: 1em;
+    visibility: visible;
+    opacity:0;
+    transform: translatex(100%);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    display: none;
+}
+
+#cart-display.active {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transform: translatex(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chatbot {
+  position: fixed;
+  bottom: 20px; /* Space from the bottom of the viewport */
+  right: 20px;  /* Space from the right of the viewport */
+  width: 300px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.chatbot-header {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+  cursor:pointer;
+  transition: background-color 0.3s;
+}
+.chatbot-header:hover{
+    background-color:#0056b3;
+}
+.chatbot-messages {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+}
+.chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+#chatbot-input {
+  flex: 1;
+  width: calc(100% - 70px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#send-message {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#send-message:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* Chatbot Styling */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.chatbot.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chatbot-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chatbot-header:hover {
+    background-color: #0056b3;
+}
+
+.chatbot-messages {
+    flex: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#send-message {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-message:hover {
+    background-color: #0056b3;
+}
+
+/* Chat messages */
+.user-message {
+    align-self: flex-end;
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 12px 0 12px 12px;
+    margin: 5px 0;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #eee;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 0 12px 12px 12px;
+    margin: 5px 0;
+}
+
+

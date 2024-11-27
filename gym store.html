@@ -1,0 +1,226 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothing Store</title>
+  <link rel="stylesheet" href="e-commerce.css"> <!-- Link to your external CSS -->
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #333;
+      background-color: #f8f9fa;
+      margin: 0;
+    }
+
+    /* Store Name Banner */
+    .store-name-banner {
+      text-align: center;
+      background-color: #00d9ff; /* New color for banner */
+      color: white;
+      padding: 20px 0;
+    }
+
+    .store-name-banner h1 {
+      text-transform: uppercase; /* Capitalize the store name */
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative; /* Allow text to overlay the image */
+      height: 100vh; /* Full viewport height */
+      width: 100%; /* Full width of the container */
+      background-image: url('gym cloth store.jpg'); /* Path to image in the same folder */
+      background-size: cover; /* Scale the image to cover the full area */
+      background-position: center; /* Center the image */
+    }
+
+    .hero .hero-content {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    /* Catalog Banner Section */
+    .catalog-banner {
+      display: flex;
+      justify-content: space-between;
+      background-color: #003366;
+      color: white;
+      padding: 10px 50px;
+      align-items: center;
+    }
+
+    .catalog-banner a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .catalog-banner a:hover {
+      background-color: #00adb5;
+      border-radius: 5px;
+    }
+
+    /* Catalog Product Section */
+    .featured-products {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .product-card {
+      width: 30%; /* Each product takes up about 1/3 of the width */
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px; /* Set a fixed height for images to prevent overlap */
+      object-fit: cover; /* Ensure the product image fills the space without distortion */
+      border-radius: 5px;
+    }
+
+    .product-details {
+      padding: 10px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #003366;
+      margin: 10px 0;
+    }
+
+    .product-price {
+      color: #00adb5;
+      font-size: 16px;
+    }
+
+    .add-to-cart-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #00adb5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #007f86;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .product-card {
+        width: 100%; /* Stack items vertically on small screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Store Name Banner Section -->
+  <section class="store-name-banner">
+    <h1>Clothing Store</h1>
+  </section>
+
+  <!-- Catalog Banner Section -->
+  <section class="catalog-banner">
+    <a href="gym store.html">Home</a>
+    <a href="men.html">Men</a>
+    <a href="women.html">Women</a>
+    <a href="kids.html">Kids</a>
+
+  </section>
+
+  <!-- Hero Section (Gym Cloth Store Image) -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>WELCOME</h1>
+      <p>Sweat in style</p>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="featured-products">
+    <h3> Featured Products</h3>
+    <div class="product-container">
+      <!-- Product Cards -->
+      <div class="product-card">
+        <img src="gym.jpg" alt="Men&#39;s Wear" class="product-image">
+        <div class="product-details">
+          <div class="product-title">Men's Wear</div>
+          <div class="product-price">$0-99.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="ladies.jpg" alt="Ladies Wear" class="product-image">
+        <div class="product-details">
+          <div class="product-title">Ladies Wear</div>
+          <div class="product-price">$5.00-70.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="kids.jpg" alt="Kids Wear" class="product-image">
+        <div class="product-details">
+          <div class="product-title">Kids Wear</div>
+          <div class="product-price">$15.00-30.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Cloth STORE </p>
+  </footer>
+</body>
+</html>
