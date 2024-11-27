@@ -1,148 +1,154 @@
-function generateProductCards(category = "all") {
-    const productContainer = document.getElementById("product-list");
-    if (!productContainer) return; // Exit if the element is not found
+// Initialize the cart from localStorage or as an empty array
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    productContainer.innerHTML = ""; // Clear existing cards
-    products.forEach((product) => {
-        if (category === "all" || product.category === category) {
-            productContainer.innerHTML += `
-                <div class="product-card" data-category="${product.category}">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h4>${product.name}</h4>
-                    <p>$${product.price.toFixed(2)}</p>
-                    <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-                </div>
-            `;
-        }
-    });
+/** Add a product to the cart */
+function addToCart(product, price, image) {
+    const parsedPrice = parseFloat(price.replace('$', '').trim()); // Ensure price is a number
 
-    // Reattach event listeners for "Add to Cart" buttons
-    document.querySelectorAll(".add-to-cart").forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const productId = parseInt(event.target.dataset.id, 10);
-            const product = products.find((p) => p.id === productId);
-            addToCart(product);
-        });
-    });
+    if (isNaN(parsedPrice)) {
+        console.error('Invalid price value:', price); // Log an error if the price is invalid
+        return; // Stop execution if the price is invalid
+    }
+
+    // Check if the product already exists in the cart
+    const existingItem = cart.find(item => item.product === product);
+
+    if (existingItem) {
+        // If the item exists, increment its quantity
+        existingItem.quantity += 1;
+    } else {
+        // Add a new item to the cart
+        cart.push({ product, price: parsedPrice.toFixed(2), quantity: 1, image });
+    }
+
+    // Save the updated cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Update the cart quantity display in the navbar
+    updateCartQuantity();
 }
 
-// Update cart display (check for required elements)
-function updateCartDisplay() {
-    const cartDisplay = document.getElementById("cart-items");
-    const totalPriceElement = document.getElementById("total-price");
-    const cartIcon = document.getElementById("cart-icon");
+/** Update the cart quantity display in the navbar */
+function updateCartQuantity() {
+    const cartQuantity = document.getElementById('cart-quantity');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (cartQuantity) {
+        cartQuantity.textContent = totalItems;
+    }
+}
 
-    if (!cartDisplay && !totalPriceElement && !cartIcon) return; // Exit if cart elements are not on the page
+/** Redirect to the cart page when the "Cart" button is clicked */
+function goToCartPage() {
+    window.location.href = 'cart.html'; // Make sure this path is correct
+}
 
-    if (cartDisplay) cartDisplay.innerHTML = "";
+/** Update the cart page with item details on cart.html */
+function updateCartPage() {
+    const cartPageItems = document.getElementById('cart-page-items');
+    const cartPageTotal = document.getElementById('cart-page-total');
+
+    if (cart.length === 0) {
+        cartPageItems.innerHTML = '<p>Your cart is empty!</p>';
+        cartPageTotal.textContent = 'Total: $0.00';
+        return;
+    }
+
+    cartPageItems.innerHTML = ''; // Clear previous content
     let total = 0;
-    cart.forEach((item) => {
-        total += item.price * item.quantity;
-        if (cartDisplay) {
-            cartDisplay.innerHTML += `
-                <div>
-                    <p>${item.name} x${item.quantity} - $${item.price}</p>
-                    <button onclick="removeFromCart(${item.id})">Remove</button>
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <div class="cart-item-content">
+                <div class="cart-item-details">
+                    <h3>${item.product}</h3>
+                    <p>Price: $${parseFloat(item.price).toFixed(2)}</p>
+                    <p>Quantity: ${item.quantity}</p>
                 </div>
-            `;
-        }
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartPageItems.appendChild(cartItem);
+        total += item.quantity * parseFloat(item.price); // Calculate total for each item
     });
 
-    if (totalPriceElement) totalPriceElement.innerText = `Total: $${total.toFixed(2)}`;
-    if (cartIcon) cartIcon.innerText = `Cart (${cart.length})`;
+    cartPageTotal.textContent = `Total: $${total.toFixed(2)}`; // Display total cart value at the bottom
 }
 
-// Filter products by category (add check for presence of links)
-const navLinks = document.querySelectorAll("nav ul li a");
-if (navLinks) {
-    navLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-            const category = event.target.dataset.category || "all";
-            generateProductCards(category);
+/** Remove an item from the cart by index */
+function removeFromCart(index) {
+    cart.splice(index, 1); // Remove item at the given index
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+    updateCartQuantity(); // Update cart icon quantity
+    updateCartPage(); // Refresh cart page view
+}
+
+/** Show product details in the modal */
+function showProductDetails(name, price, image) {
+    const descriptions = {
+       
+        
+    };
+
+    const description = descriptions[name] || "No description available.";
+
+    // Get the modal and content container
+    const modal = document.getElementById("product-modal");
+    const modalContent = document.getElementById("modal-content");
+
+    // Create the HTML content for the modal
+    modalContent.innerHTML = `
+        <h3>${name}</h3>
+        <img src="${image}" alt="${name}" class="modal-image">
+        <p><strong>Price:</strong> ${price}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <button class="add-to-cart" onclick="addToCart('${name}', '${price}', '${image}')">Add to Cart</button>
+    `;
+
+    // Show the modal
+    modal.style.display = "block";
+}
+
+/** Close the modal */
+function closeModal() {
+    const modal = document.getElementById("product-modal");
+    modal.style.display = "none";
+}
+
+// Close the modal if clicked outside of the modal content
+window.onclick = function(event) {
+    const modal = document.getElementById("product-modal");
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+/** Initialize the cart page functionality */
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartPage(); // Update cart page when the document is ready
+});
+
+
+    // Get the search input element
+    const searchInput = document.getElementById('searchInput');
+    
+    // Get all the product cards
+    const productCards = document.querySelectorAll('.product-card');
+    
+    // Listen for user input in the search bar
+    searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value.toLowerCase(); // Convert to lowercase for case-insensitive search
+        
+        productCards.forEach(card => {
+            // Get the product name or title from the card (assuming the title is in an h3 element)
+            const productName = card.querySelector('.product-name').textContent.toLowerCase();
+            
+            // If the product name includes the search term, show it, else hide it
+            if (productName.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
         });
     });
-}
-
-// Initialize on page load
-window.addEventListener("DOMContentLoaded", () => {
-    const productContainer = document.getElementById("product-list");
-    if (productContainer) generateProductCards(); // Only generate products if #product-list exists
-    updateCartDisplay(); // Sync cart with localStorage
-});
-
-
-
-// Chatbot Response Functionality
-document.addEventListener("DOMContentLoaded", () => {
-    const chatbot = document.querySelector(".chatbot");
-    const chatbotHeader = document.querySelector(".chatbot-header");
-    const chatbotMessages = document.querySelector(".chatbot-messages");
-    const chatbotInput = document.getElementById("chatbot-input");
-    const sendMessageButton = document.getElementById("send-message");
-
-    // Toggle chatbot visibility
-    chatbotHeader.addEventListener("click", () => {
-        chatbot.classList.toggle("active");
-    });
-
-    // Send chatbot message
-    sendMessageButton.addEventListener("click", () => {
-        const userMessage = chatbotInput.value.trim();
-        if (!userMessage) return; // Exit if input is empty
-
-        // Display user's message
-        appendChatMessage("user", userMessage);
-
-        // Generate chatbot's response
-        setTimeout(() => {
-            const botResponse = generateChatbotResponse(userMessage);
-            appendChatMessage("bot", botResponse);
-        }, 500);
-
-        chatbotInput.value = ""; // Clear input
-    });
-
-    // Append a message to the chatbot interface
-    function appendChatMessage(sender, message) {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add(`${sender}-message`);
-        messageElement.textContent = message;
-        chatbotMessages.appendChild(messageElement);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Auto-scroll
-    }
-
-    // Generate a basic chatbot response
-    function generateChatbotResponse(userMessage) {
-        const lowerCaseMessage = userMessage.toLowerCase();
-        if (lowerCaseMessage.includes("hello")) {
-            return "Hi there! How can I help you today?";
-        } else if (lowerCaseMessage.includes("product")) {
-            return "Are you looking for details about a specific product?";
-        } else if (lowerCaseMessage.includes("cart")) {
-            return "You can view your cart using the cart icon in the header.";
-        } else if (lowerCaseMessage.includes("checkout")) {
-            return "Proceed to the checkout section to complete your purchase.";
-        } else {
-            return "I'm here to help! Can you please clarify your query?";
-        }
-    }
-});
-
-
-
-function updateCartUI() {
-  let cartMessage = "Your cart contains:\n";
-  cart.forEach(item => {
-    cartMessage += `- ${item.name} ($${item.price})\n`;
-  });
-  // Update the chatbot's message display
-  updateChatbot(cartMessage);
-}
-
-function getCartContents() {
-  if (cart.length === 0) {
-    return "Your cart is empty.";
-  }
-  return "Your cart contains: " + cart.map(item => `${item.name} ($${item.price})`).join(", ");
-}
