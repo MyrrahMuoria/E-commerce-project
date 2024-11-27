@@ -44,17 +44,17 @@
             <h2>Product 1</h2>
             <p>Description of Product 1</p>
             <p class="price">$10.00</p>
-            <button class="add-to-cart" arai-label="Add Product 1 to cart">Add to Cart</button>
+            <button class="add-to-cart" arai-label="Add Product 1 to cart " onclick="addToCart('Product 1', '$10.00', 'product1.jpg')">Add to Cart</button>
         </div>
         <!-- Repeat for other products -->
     </main>
 
     <!-- Cart Display -->
-    <aside id="cart-display" aria-labelledby="cart-label">
+    <aside id="cart-display" aria-labelledby="cart-label" style="display: none;">
         <h2 id="cart-label">Your Cart</h2>
         <div id="cart-items"></div>
         <p>Total: $<span id="total-price">0.00</span></p>
-        <button id="checkout-btn" aria-label="Proceed to checkout">Checkout</button>
+        <button id="checkout-btn" aria-label="Proceed to checkout" onclick="goToCheckout()">Checkout</button>
     </aside>
 
     
