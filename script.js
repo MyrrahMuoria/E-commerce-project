@@ -152,3 +152,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+
+
+    // Generate a basic chatbot response
+    function generateChatbotResponse(userMessage) {
+        const lowerCaseMessage = userMessage.toLowerCase();
+        if (lowerCaseMessage.includes("hello")) {
+            return "Hi there! How can I help you today?";
+        } else if (lowerCaseMessage.includes("product")) {
+            return "Are you looking for details about a specific product?";
+        } else if (lowerCaseMessage.includes("cart")) {
+            return "You can view your cart using the cart icon in the header.";
+        } else if (lowerCaseMessage.includes("checkout")) {
+            return "Proceed to the checkout section to complete your purchase.";
+        } else if (lowerCaseMessage.includes("size guide")) {
+            return "You can find the size guide on each product page to help you choose the right fit.";
+        } else if (lowerCaseMessage.includes("return policy")) {
+            return "Our return policy allows returns within 30 days of purchase. Would you like more details?";
+        } else if (lowerCaseMessage.includes("shipping")) {
+            return "We offer various shipping options. Are you interested in standard or express delivery?";
+        } else if (lowerCaseMessage.includes("discount")) {
+            return "Looking for discounts? Check out our promotions section for the latest deals.";
+        } else if (lowerCaseMessage.includes("order status")) {
+            return "You can track your order status by entering your order number in the tracking section.";
+        } else if (lowerCaseMessage.includes("store location")) {
+            return "You can find our store locations on the 'Find Us' page. Can I help you with directions?";
+        } else if (lowerCaseMessage.includes("new arrivals")) {
+            return "Check out the 'New Arrivals' section for the latest additions to our collection.";
+        } else if (lowerCaseMessage.includes("gift card")) {
+            return "We offer gift cards in various denominations. Would you like to know more?";
+        } else if (lowerCaseMessage.includes("contact support")) {
+            return "You can contact our support team via chat, email, or phone. How would you like to reach us?";
+        } else if (lowerCaseMessage.includes("out of stock")) {
+            return "If a product is out of stock, you can sign up for a restock notification on the product page.";
+        } else {
+            return "I'm here to help! Can you please clarify your query?";
