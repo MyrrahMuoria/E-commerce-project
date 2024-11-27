@@ -141,6 +141,35 @@ window.onclick = function(event) {
         closeModal();
     }
 };
+// Show product details in the modal
+function showProductDetails(name, price, image) {
+    const descriptions = {
+        // Add your product descriptions here
+        [name]: "Detailed description of the product."
+    };
+
+    const description = descriptions[name] || "No description available.";
+
+    const modalContent = document.getElementById("modal-content");
+
+    modalContent.innerHTML = `
+        <h3>${name}</h3>
+        <img src="${image}" alt="${name}" class="modal-image">
+        <p><strong>Price:</strong> ${price}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <button class="add-to-cart" onclick="addToCart('${name}', '${price}', '${image}')">Add to Cart</button>
+        <button class="close-modal" onclick="closeModal()">Close</button>
+    `;
+
+    const modal = document.getElementById("product-modal");
+    modal.style.display = "block";
+}
+
+// Close the modal
+function closeModal() {
+    const modal = document.getElementById("product-modal");
+    modal.style.display = "none";
+}
 
 /** Initialize the cart page functionality */
 document.addEventListener('DOMContentLoaded', () => {
