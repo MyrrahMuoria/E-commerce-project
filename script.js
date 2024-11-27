@@ -129,3 +129,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+
+function updateCartUI() {
+  let cartMessage = "Your cart contains:\n";
+  cart.forEach(item => {
+    cartMessage += `- ${item.name} ($${item.price})\n`;
+  });
+  // Update the chatbot's message display
+  updateChatbot(cartMessage);
+}
+
+function getCartContents() {
+  if (cart.length === 0) {
+    return "Your cart is empty.";
+  }
+  return "Your cart contains: " + cart.map(item => `${item.name} ($${item.price})`).join(", ");
+}
