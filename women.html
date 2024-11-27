@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Women's Collection</title>
     <link rel="stylesheet" href="style.css" />
-    
-   <script src="script.js" defer></script>
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -23,33 +21,55 @@
         </ul>
       </nav>
     </header>
+    <input type="text" id="search" placeholder="Search products...">
+    <div id="cart-icon">
+        <span>Cart (0)</span>
+    </div>
+</nav>
+</header>
+
+<!-- Product Filters -->
+<section id="filters">
+<form>
+    <label for="sort">Sort by:</label>
+    <select id="sort">
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+    </select>
+</form>
+</section>
 
     <section class="main-content">
       <h2>Women's Collection</h2>
+      
+        <h3>Select the Category You Wish To Shop</h3>
+        <div class="categories">
+          <a href="#womensshorts">Womens Shorts</a>
+            <a href="womenShoes.html">Women Shoes</a>
+            <a href="womenClothes.html">Women Clothes</a>
+  
+      </div>
 
-     <div id="product-list"></div>
-            <!--Shorts Section -->
-      <h3>Womens Shorts</h3>
+      <!--Shorts Section -->
+      <h3 id="womensshorts">Womens Shorts</h3>
       <div class="product-grid">
         <div class="product-card">
-          <img src="images/running-shoe1.jpg" alt="Shorts" />
           <img src="womens shorts/short1.jpeg" alt="Shorts" />
           <h4></h4>
           <p>Price: $50.00</p>
+          Designed for comfort, style, and durability, perfect for warm weather or casual wear.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/running-shoe1.jpg" alt="Shorts" />
-
           <img src="womens shorts/short22.jpeg" alt="Shorts" />
           <h4></h4>
           <p>Price: $50.00</p>
+          Made from premium materials like cotton, denim, linen, or performance fabrics for comfort, breathability, and longevity.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/running-shoe1.jpg" alt="Shorts" />
           <img src="womens shorts/short6.jpeg" alt="Shorts" />
           <h4></h4>
           <p>Price: $50.00</p>
@@ -57,23 +77,26 @@
         </div>
 
         <div class="product-card">
-          <img src="images/running-shoe1.jpg" alt="Shorts" />
+          <img src="womens shorts/short3.jpeg"Shorts" />
           <h4></h4>
           <p>Price: $50.00</p>
+          Well-crafted to ensure a flattering and functional fit, accommodating different body shapes and preferences.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/running-shoe1.jpg" alt="Shorts" />
+          <img src="womens shorts/short4.jpeg" alt="Shorts" />
           <h4></h4>
           <p>Price: $50.00</p>
+          Reinforced stitching and attention to detail to ensure the shorts maintain their shape and quality over time.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/running-shoe1.jpg" alt="Shorts" />
+          <img src="womens shorts/short5.jpeg" alt="Shorts" />
           <h4></h4>
           <p>Price: $50.00</p>
+          Often feature timeless designs or trendy elements like unique cuts, patterns, or embellishments.
           <button>Add to Cart</button>
         </div>
       </div>
@@ -82,44 +105,50 @@
       <h3>Dresses</h3>
       <div class="product-grid">
         <div class="product-card">
-          <img src="images/sneaker1.jpg" alt="Dress" />
+          <img src="womens dresses/dress1.jpeg" alt="Dress" />
+          <h4>Womens Dresses</h4>
+          <p>Price: $60.00</p>
+          Made from high-grade materials like silk, cotton, linen, or sustainably sourced fabrics that feel comfortable and last longer.
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="womens dresses/dress2.jpeg" alt="Dress" />
+          <h4>Womens Dresses</h4>
+          <p>Price: $60.00</p>
+          Well-tailored to flatter various body shapes, with clean seams, secure stitching, and thoughtful construction.
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="womens dresses/dress3.jpeg" alt="Dress" />
+          <h4>Womens Dresses</h4>
+          <p>Price: $60.00</p>
+          Timeless or trendy, featuring elegant patterns, intricate embellishments, or minimalistic styles.
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="womens dresses/dress4.jpeg" alt="Dress" />
           <h4>Womens Dresses</h4>
           <p>Price: $60.00</p>
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/sneaker1.jpg" alt="Dress" />
+          <img src="womens dresses/dress5.jpeg" alt="Dress" />
           <h4>Womens Dresses</h4>
           <p>Price: $60.00</p>
+          Suitable for various settings, such as casual outings, office wear, or formal events.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/sneaker1.jpg" alt="Dress" />
+          <img src="womens dresses/dress6.jpeg" alt="Dress" />
           <h4>Womens Dresses</h4>
           <p>Price: $60.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/sneaker1.jpg" alt="Dress" />
-          <h4>Womens Dresses</h4>
-          <p>Price: $60.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/sneaker1.jpg" alt="Dress" />
-          <h4>Womens Dresses</h4>
-          <p>Price: $60.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/sneaker1.jpg" alt="Dress" />
-          <h4>Womens Dresses</h4>
-          <p>Price: $60.00</p>
+          Designed with attention to detail, superior craftsmanship, and premium materials.<br>
+          The dress prioritizes comfort, durability, and style, catering to diverse preferences and occasions.
           <button>Add to Cart</button>
         </div>
       </div>
@@ -128,44 +157,50 @@
       <h3>Leggings</h3>
       <div class="product-grid">
         <div class="product-card">
-          <img src="images/open-shoe1.jpg" alt="Leggings" />
+          <img src="leggings/leg1.jpeg" alt="Leggings" />
           <h4>Womens Leggings</h4>
           <p>Price: $30.00</p>
+          Made from premium materials like stretchy cotton blends, moisture-wicking polyester, or performance-grade spandex for flexibility and breathability.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/open-shoe1.jpg" alt="Leggings" />
+          <img src="leggings/leg2.jpeg" alt="Leggings" />
           <h4>Womens Leggings</h4>
           <p>Price: $30.00</p>
+          Designed for a snug yet comfortable fit, with features like high-waisted bands or compression support to enhance mobility and shape.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/open-shoe1.jpg" alt="Leggings" />
+          <img src="leggings/leg3.jpeg"Leggings" />
           <h4>Womens Leggings</h4>
           <p>Price: $30.00</p>
+          Strong seams and high-quality stitching ensure they resist wear and maintain their form over time.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/open-shoe1.jpg" alt="Leggings" />
+          <img src="leggings/leg4.jpeg" alt="Leggings" />
           <h4>Womens Leggings</h4>
           <p>Price: $30.00</p>
+          Suitable for a range of activities, from workouts and yoga to lounging and casual outings.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/open-shoe1.jpg" alt="Leggings" />
+          <img src="leggings/leg5.jpeg" alt="Leggings" />
           <h4>Womens Leggings</h4>
           <p>Price: $30.00</p>
+          Typically made from stretchy fabrics like spandex, cotton blends, polyester, or nylon, offering a smooth and flexible fit.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/open-shoe1.jpg" alt="Leggings" />
+          <img src="leggings/leg6.jpeg" alt="Leggings" />
           <h4>Womens Leggings</h4>
           <p>Price: $30.00</p>
+          Often feature an elastic waistband, with options for high-waisted, mid-rise, or low-rise styles.
           <button>Add to Cart</button>
         </div>
       </div>
@@ -174,156 +209,109 @@
       <h3>Gym Clothing</h3>
       <div class="product-grid">
         <div class="product-card">
-          <img src="images/trail-shoe1.jpg" alt="Gym Clothing" />
+          <img src="gym/cloth1.jpeg" alt="Gym Clothing" />
           <h4>Gym Cloth</h4>
           <p>Price: $70.00</p>
+          An activewear designed to provide comfort, flexibility, and support during workouts.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/trail-shoe1.jpg" alt="Gym Clothing" />
+          <img src="gym/cloth2.jpeg" alt="Gym Clothing" />
           <h4>Gym Cloth</h4>
           <p>Price: $70.00</p>
+          Made from moisture-wicking, breathable, and stretchy materials like polyester, spandex, or nylon to enhance performance and keep the body cool.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/trail-shoe1.jpg" alt="Gym Clothing" />
+          <img src="gym/cloth33.jpeg" alt="Gym Clothing" />
           <h4>Gym Cloth</h4>
           <p>Price: $70.00</p>
+          Designed for a secure yet comfortable fit, with options like high-waisted leggings, fitted tops, or loose tanks to suit various preferences.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/trail-shoe1.jpg" alt="Gym Clothing" />
+          <img src="gym/cloth4.jpeg" alt="Gym Clothing" />
           <h4>Gym Cloth</h4>
           <p>Price: $70.00</p>
+          Reinforced stitching and high-quality materials ensure longevity through rigorous activities.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/trail-shoe1.jpg" alt="Gym Clothing" />
+          <img src="gym/cloth5.jpeg" alt="Gym Clothing" />
           <h4>Gym Cloth</h4>
           <p>Price: $70.00</p>
+          Available in stylish cuts, vibrant colors, and trendy patterns that blend fashion with function.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/trail-shoe1.jpg" alt="Gym Clothing" />
+          <img src="gym/cloth6.jpeg" alt="Gym Clothing" />
           <h4>Gym Cloth</h4>
           <p>Price: $70.00</p>
+          Often include features like seamless construction, compression support, and pockets for convenience.
           <button>Add to Cart</button>
         </div>
       </div>
-
+ 
       <!-- T-Shirts Section -->
       <h3>T-Shirts</h3>
       <div class="product-grid">
         <div class="product-card">
-          <img src="images/tshirt1.jpg" alt="T-Shirt" />
+          <img src="tshirts/shirt1.jpeg" alt="T-Shirt" />
           <h4>Cotton T-Shirt</h4>
           <p>Price: $20.00</p>
+          Is a wardrobe essentials known for its' comfort, durability, and versatility.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/tshirt1.jpg" alt="T-Shirt" />
+          <img src="tshirts/shirt2.jpeg" alt="T-Shirt" />
           <h4>Cotton T-Shirt</h4>
           <p>Price: $20.00</p>
+          Made from premium materials like soft cotton, bamboo blends, or breathable performance fabrics for comfort and longevity.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/tshirt1.jpg" alt="T-Shirt" />
+          <img src="tshirts/shirt3.jpeg" alt="T-Shirt" />
           <h4>Cotton T-Shirt</h4>
           <p>Price: $20.00</p>
+          Tailored to provide a flattering fit, with options like slim, relaxed, or oversized styles to suit different preferences.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/tshirt1.jpg" alt="T-Shirt" />
+          <img src="tshirts/shirt4.jpeg" alt="T-Shirt" />
           <h4>Cotton T-Shirt</h4>
           <p>Price: $20.00</p>
+          High-quality stitching and fade-resistant materials ensure the T-shirt maintains its shape and color over time.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/tshirt1.jpg" alt="T-Shirt" />
+          <img src="tshirts/shirt5.jpeg" alt="T-Shirt" />
           <h4>Cotton T-Shirt</h4>
           <p>Price: $20.00</p>
+          Suitable for casual wear, layering, or dressing up with accessories.
           <button>Add to Cart</button>
         </div>
 
         <div class="product-card">
-          <img src="images/tshirt1.jpg" alt="T-Shirt" />
+          <img src="tshirts/shirt6.jpeg" alt="T-Shirt" />
           <h4>Cotton T-Shirt</h4>
           <p>Price: $20.00</p>
+          Easy to pair with jeans, skirts, or activewear, suitable for casual outings, lounging, or layering.
           <button>Add to Cart</button>
         </div>
       </div>
 
-      <!-- Footwear Section -->
-      <h3>Womens Footwear</h3>
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="images/hoodie1.jpg" alt="Shoe" />
-          <h4>Shoe</h4>
-          <p>Price: $40.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/hoodie1.jpg" alt="Shoe" />
-          <h4>Shoe</h4>
-          <p>Price: $40.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/hoodie1.jpg" alt="Shoe" />
-          <h4>Shoe</h4>
-          <p>Price: $40.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/hoodie1.jpg" alt="Shoe" />
-          <h4>Shoe</h4>
-          <p>Price: $40.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/hoodie1.jpg" alt="Shoe" />
-          <h4>Shoe</h4>
-          <p>Price: $40.00</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <img src="images/hoodie1.jpg" alt="Shoe" />
-          <h4>Shoe</h4>
-          <p>Price: $40.00</p>
-          <button>Add to Cart</button>
-        </div>
-      </div>
-=======
-          <img src="womens shorts/short3.jpeg"Shorts" />
-          <h4></h4>
-          <p>Price: $50.00</p>
-          <button>Add to Cart</button>
-      </div>
-
-        <!-- Chatbot Interface -->
-<div class="chatbot">
-  <div class="chatbot-header" aria-label="Toggle chatbot">Chat with us</div>
-  <div class="chatbot-messages" aria-live="polite"></div>
-  <div class="chatbot-input-container">
-      <input type="text" id="chatbot-input" placeholder="Type a message..." aria-label="Type your message">
-      <button id="send-message" aria-label="Send message">Send</button>
-  </div>
-</div>
       
+        </div>
+      </div>
     </section>
   </body>
 </html>
